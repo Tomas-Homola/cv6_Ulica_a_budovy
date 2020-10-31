@@ -4,178 +4,205 @@
 
 class FamilyHouse
 {
-private:
+protected:
 	int number;
-	int numOfFloors;
+	int floors;
 	int houseArea;
 	int gardenArea;
 
 public:
 	FamilyHouse();
-	FamilyHouse(int number, int numOfFloors, int houseArea, int gardenArea);
+	FamilyHouse(int number, int floors, int houseArea, int gardenArea);
 
 	// funkcie na vratenie premennych
 	int getNumber() { return number; }
-	int getNumOfFloors() { return numOfFloors; }
+	int getNumOfFloors() { return floors; }
 	int getHouseArea() { return houseArea; }
 	int getGardenArea() { return gardenArea; }
 
 	// funkcie na prepis premennych
 	void changeNumber(int newNumber) { number = newNumber; }
-	void changeNumOfFloors(int newNumOfFloors) { numOfFloors = newNumOfFloors; }
+	void changeNumOfFloors(int newNumOfFloors) { floors = newNumOfFloors; }
 	void changeHouseArea(int newHouseArea) { houseArea = newHouseArea; }
 	void changeGardenArea(int newGardenArea) { gardenArea = newGardenArea; }
 
+	void printInfo();
 };
 
 FamilyHouse::FamilyHouse()
 {
 	number = -1;
-	numOfFloors = -1;
+	floors = -1;
 	houseArea = -1;
 	gardenArea = -1;
 }
 
-FamilyHouse::FamilyHouse(int number, int numOfFloors, int houseArea, int gardenArea)
+FamilyHouse::FamilyHouse(int number, int floors, int houseArea, int gardenArea)
 {
 	this->number = number;
-	this->numOfFloors = numOfFloors;
+	this->floors = floors;
 	this->houseArea = houseArea;
 	this->gardenArea = gardenArea;
+}
+
+void FamilyHouse::printInfo()
+{
+	std::cout << "Family house number: " << number << "\nNumber of floors: " << floors << "\nHouse area: " << houseArea << " m^2\nGarden area: " << gardenArea << " m^2" << std::endl;
 }
 
 //################################################################################//
 
 class BlockOfFlats
 {
-private:
+protected:
 	int number;
-	int numOfFloors;
-	int numOfFlats;
+	int floors;
+	int flats;
 
 public:
 	BlockOfFlats();
-	BlockOfFlats(int number, int numOffFloors, int numOfFlats);
+	BlockOfFlats(int number, int floors, int flats);
 
 	// funkcie na vratenie premennych
 	int getNumber() { return number; }
-	int getNumOfFloors() { return numOfFloors; }
-	int getNumOfFlats() { return numOfFlats; }
+	int getNumOfFloors() { return floors; }
+	int getNumOfFlats() { return flats; }
 
 	// funkcie na prepis premennych
 	void changeNumber(int newNumber) { number = newNumber; }
-	void changeNumOfFloors(int newNumOfFloors) { numOfFloors = newNumOfFloors; }
-	void changeNumOfFlats(int newNumOfFlats) { numOfFlats = newNumOfFlats; }
+	void changeNumOfFloors(int newNumOfFloors) { floors = newNumOfFloors; }
+	void changeNumOfFlats(int newNumOfFlats) { flats = newNumOfFlats; }
+
+	void printInfo();
 };
 
 BlockOfFlats::BlockOfFlats()
 {
 	number = -1;
-	numOfFloors = -1;
-	numOfFlats = -1;
+	floors = -1;
+	flats = -1;
 }
 
-BlockOfFlats::BlockOfFlats(int number, int numOffFloors, int numOfFlats)
+BlockOfFlats::BlockOfFlats(int number, int floors, int flats)
 {
 	this->number = number;
-	this->numOfFloors = numOffFloors;
-	this->numOfFlats = numOfFlats;
+	this->floors = floors;
+	this->flats = flats;
+}
+
+void BlockOfFlats::printInfo()
+{
+	std::cout << "Block of Flats number: " << number << "\nNumber of floors: " << floors << "\nNumber of flats: " << flats << std::endl;
 }
 
 //################################################################################//
 
 class OfficeBuilding
 {
-private:
+protected:
 	int number;
-	int numOfFloors;
-	int numOfEmployees;
+	int floors;
+	int employees;
 	double averageDailyTurnover;
-	int numOfDepartments;
+	int departments;
 
 public:
 	OfficeBuilding();
-	OfficeBuilding(int number, int numOfFloors, int numOfEmployees, int averageDailyTurnover, int numOfDepartments);
+	OfficeBuilding(int number, int floors, int employees, int averageDailyTurnover, int departments);
 
 	// funkcie na vratenie premennych
 	int getNumber() { return number; }
-	int getNumOfFloors() { return numOfFloors; }
-	int getNumOfEmployees() { return numOfEmployees; }
+	int getNumOfFloors() { return floors; }
+	int getNumOfEmployees() { return employees; }
 	double getAverageDailyTurnover() { return averageDailyTurnover; }
-	int getNumOfDepartments() { return numOfDepartments; }
+	int getNumOfDepartments() { return departments; }
 
 	// funkcie na prepis premennych
 	void changeNumber(int newNumber) { number = newNumber; }
-	void changeNumOfFloors(int newNumOfFloors) { numOfFloors = newNumOfFloors; }
-	void changeNumOfEmployees(int newNumOfEmployees) { numOfEmployees = newNumOfEmployees; }
+	void changeNumOfFloors(int newNumOfFloors) { floors = newNumOfFloors; }
+	void changeNumOfEmployees(int newNumOfEmployees) { employees = newNumOfEmployees; }
 	void changeAverageDailyTurnover(double newAverageDailyTurnover) { averageDailyTurnover = newAverageDailyTurnover; }
-	void changeNumOfDepartments(int newNumOfDepartments) { numOfDepartments = newNumOfDepartments; }
+	void changeNumOfDepartments(int newNumOfDepartments) { departments = newNumOfDepartments; }
+
+	void printInfo();
 };
 
 OfficeBuilding::OfficeBuilding()
 {
 	number = -1;
-	numOfFloors = -1;
-	numOfEmployees = -1;
+	floors = -1;
+	employees = -1;
 	averageDailyTurnover = 0.0;
-	numOfDepartments = -1;
+	departments = -1;
 }
 
-OfficeBuilding::OfficeBuilding(int number, int numOfFloors, int numOfEmployees, int averageDailyTurnover, int numOfDepartments)
+OfficeBuilding::OfficeBuilding(int number, int floors, int employees, int averageDailyTurnover, int departments)
 {
 	this->number = number;
-	this->numOfFloors = numOfFloors;
-	this->numOfEmployees = numOfEmployees;
+	this->floors = floors;
+	this->employees = employees;
 	this->averageDailyTurnover = averageDailyTurnover;
-	this->numOfDepartments = numOfDepartments;
+	this->departments = departments;
+}
+
+void OfficeBuilding::printInfo()
+{
+	std::cout << "Office building number: " << number << "\nNumber of floors: " << floors << "\nNumber of employees: " << employees << "\nAverage daily turnover: " << averageDailyTurnover << " EUR\nNumber of departments: " << departments << std::endl;
 }
 
 //################################################################################//
 
 class Factory
 {
-private:
+protected:
 	int number;
-	int numOfFloors;
-	int numOfEmployees;
+	int floors;
+	int employees;
 	double averageDailyTurnover;
 	int areaOfProductionHall;
 
 public:
 	Factory();
-	Factory(int number, int numOfFloors, int numOfEmployees, double averageDailyTurnover, int areaOfProductionHall);
+	Factory(int number, int floors, int employees, double averageDailyTurnover, int areaOfProductionHall);
 
 	// funkcie na vratenie premennych
 	int getNumber() { return number; }
-	int getNumOfFloors() { return numOfFloors; }
-	int getNumOfEmployees() { return numOfEmployees; }
+	int getNumOfFloors() { return floors; }
+	int getNumOfEmployees() { return employees; }
 	double getAverageDailyTurnover() { return averageDailyTurnover; }
 	int getAreaOfProductionHall() { return areaOfProductionHall; }
 
 	// funkcie na prepis premennych
 	void changeNumber(int newNumber) { number = newNumber; }
-	void changeNumOfFloors(int newNumOfFloors) { numOfFloors = newNumOfFloors; }
-	void changeNumOfEmployees(int newNumOfEmployees) { numOfEmployees = newNumOfEmployees; }
+	void changeNumOfFloors(int newNumOfFloors) { floors = newNumOfFloors; }
+	void changeNumOfEmployees(int newNumOfEmployees) { employees = newNumOfEmployees; }
 	void changeAverageDailyTurnover(double newAverageDailyTurnover) { averageDailyTurnover = newAverageDailyTurnover; }
 	void changeAreaOfProductionHall(int newAreaOfProductionHall) { areaOfProductionHall = newAreaOfProductionHall; }
+
+	void printInfo();
 };
 
 Factory::Factory()
 {
 	number = -1;
-	numOfFloors = -1;
-	numOfEmployees = -1;
+	floors = -1;
+	employees = -1;
 	averageDailyTurnover = 0.0;
 	areaOfProductionHall = -1;
 }
 
-Factory::Factory(int number, int numOfFloors, int numOfEmployees, double averageDailyTurnover, int areaOfProductionHall)
+Factory::Factory(int number, int floors, int employees, double averageDailyTurnover, int areaOfProductionHall)
 {
 	this->number = number;
-	this->numOfFloors = numOfFloors;
-	this->numOfEmployees = numOfEmployees;
+	this->floors = floors;
+	this->employees = employees;
 	this->averageDailyTurnover = averageDailyTurnover;
 	this->areaOfProductionHall = areaOfProductionHall;
+}
+
+void Factory::printInfo()
+{
+	std::cout << "Factory number: " << number << "\nNumber of floors: " << floors << "\nNumber of employees: " << employees << "\nAverage daily turnover: " << averageDailyTurnover << " EUR\nArea of the production hall: " << areaOfProductionHall << " m^2" << std::endl;
 }
 
 //################################################################################//
@@ -185,7 +212,11 @@ class Street : public FamilyHouse, public BlockOfFlats, public OfficeBuilding, p
 private:
 	std::string city;
 	std::string streetName;
-	int numOfBuildings;
+
+	int numOfFamilyHouses;
+	int numOfBlocksOfFlats;
+	int numOfOfficeBuildings;
+	int numOfFactories;
 	
 	FamilyHouse* familyHouses;
 	BlockOfFlats* blocksOfFlats;
@@ -194,18 +225,76 @@ private:
 
 public:
 	Street();
-	Street(std::string city, std::string streetName, int numOfBuildings);
+	Street(std::string city, std::string streetName);
+
+	void generateBuildings();
+	void printInfo();
 };
 
 Street::Street()
 {
 	city = "N/A";
 	streetName = "N/A";
-	numOfBuildings = -1;
 
 	familyHouses = nullptr;
+	blocksOfFlats = nullptr;
+	officeBuildings = nullptr;
+	factories = nullptr;
 }
 
-Street::Street(std::string city, std::string streetName, int numOfBuildings)
+Street::Street(std::string city, std::string streetName)
 {
+	this->city = city;
+	this->streetName = streetName;
+
+	familyHouses = nullptr;
+	blocksOfFlats = nullptr;
+	officeBuildings = nullptr;
+	factories = nullptr;
+}
+
+void Street::generateBuildings()
+{
+	int temp = 0;
+
+	// generovanie pre family houses
+	temp = std::rand() % 20;
+	if (temp != 0)
+	{
+		numOfFamilyHouses = temp;
+		familyHouses = new FamilyHouse[numOfFamilyHouses];
+	}
+}
+
+void Street::printInfo()
+{
+	std::cout << "Street name: " << streetName << "\nCity: " << city << "\nFollowing buildings are located on this street:" << std::endl;
+
+	// vypis pre family houses
+	if (familyHouses == nullptr)
+		std::cout << "There are no family houses on this street" << std::endl;
+	else
+		for (int i = 0; i < numOfFamilyHouses; i++)
+			familyHouses[i].printInfo();
+
+	// vypis pre blocks of flats
+	if (blocksOfFlats == nullptr)
+		std::cout << "There are no blocks of flats on this street" << std::endl;
+	else
+		for (int i = 0; i < numOfBlocksOfFlats; i++)
+			blocksOfFlats[i].printInfo();
+
+	// vypis pre office buildings
+	if (officeBuildings == nullptr)
+		std::cout << "There are no office buildings on this street" << std::endl;
+	else
+		for (int i = 0; i < numOfOfficeBuildings; i++)
+			officeBuildings[i].printInfo();
+
+	// vypis pre factories
+	if (factories == nullptr)
+		std::cout << "There are no factories on this street" << std::endl;
+	else
+		for (int i = 0; i < numOfFactories; i++)
+			factories[i].printInfo();
 }
