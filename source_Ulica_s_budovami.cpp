@@ -20,7 +20,7 @@ protected:
 public:
 	Street() {}
 	Street(std::string city, std::string streetName);
-	virtual ~Street();
+	//virtual ~Street();
 
 	Street** familyHouses = nullptr;
 	Street** blocksOfFlats = nullptr;
@@ -45,7 +45,7 @@ Street::Street(std::string city, std::string streetName)
 	generateBuildings();
 }
 
-Street::~Street()
+/*Street::~Street()
 {
 	for (int i = 0; i < numOfFamilyHouses; i++)
 	{
@@ -74,7 +74,7 @@ Street::~Street()
 	}
 
 	delete[] factories;
-}
+}*/
 
 void Street::printInfo()
 {
@@ -298,8 +298,8 @@ void Street::generateBuildings()
 {
 	int tempFloors = 0, tempEmplyees = 0;
 
-	numOfFamilyHouses = rand() % 20 + 1;
-	numOfBlocksOfFlats = rand() % 10 + 1;
+	numOfFamilyHouses = rand() % 16 + 5; // 5-20
+	numOfBlocksOfFlats = rand() % 8 + 3; // 
 	numOfOfficeBuildings = rand() % 5 + 1;
 	numOfFactories = rand() % 3 + 1;
 
