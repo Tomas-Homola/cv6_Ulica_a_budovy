@@ -281,15 +281,17 @@ int main()
 {
 	srand((unsigned)time(0));
 
-	Street ulica("Bratislava", "Racianska");
+	//Street ulica("Bratislava", "Racianska");
 
-	ulica.printInfo();
+	//ulica.printInfo();
 
-	/*FamilyHouse domcek(1, 2, 100, 150);
-	domcek.setStreetName("Demanovska");
+	FamilyHouse domcek(1, 2, 100, 150);
 
-	cout << domcek.getCityName() << endl << domcek.getStreetName() << endl;
-	domcek.printInfo();*/
+	cout << "Domcek: " << domcek.getCityName() << endl << domcek.getStreetName() << endl;
+	domcek.printInfo();
+
+	domcek.setCityName("Zvolen"); domcek.setStreetName("Kosicka");
+	cout << "Domcek: " << domcek.getCityName() << endl << domcek.getStreetName() << endl;
 
 	return 0;
 }
@@ -299,9 +301,9 @@ void Street::generateBuildings()
 	int tempFloors = 0, tempEmplyees = 0;
 
 	numOfFamilyHouses = rand() % 16 + 5; // 5-20
-	numOfBlocksOfFlats = rand() % 8 + 3; // 
-	numOfOfficeBuildings = rand() % 5 + 1;
-	numOfFactories = rand() % 3 + 1;
+	numOfBlocksOfFlats = rand() % 8 + 3; // 3-10
+	numOfOfficeBuildings = rand() % 5 + 2; // 2-6
+	numOfFactories = rand() % 3 + 1; // 1-3
 
 	familyHouses = new Street * [numOfFamilyHouses];
 	blocksOfFlats = new Street * [numOfBlocksOfFlats];
@@ -309,12 +311,18 @@ void Street::generateBuildings()
 	factories = new Street * [numOfFactories];
 
 	for (int i = 0; i < numOfFamilyHouses; i++)
+	{
 		familyHouses[i] = new FamilyHouse(i + 7001, rand() % 2 + 1, rand() % 101 + 50, rand() % 101 + 100); // pri number 7000 preto lebo v mojej adrese je 7009
+		familyHouses[i]->setCityName(city);
+		familyHouses[i]->setStreetName(streetName);
+	}
 
 	for (int i = 0; i < numOfBlocksOfFlats; i++)
 	{
 		tempFloors = rand() % 13 + 3; // pomocna premenna, kde bude ulozeny pocet poschodi a to sa potom pouzije na vypocet celkoveho poctu bytov v block of flats
 		blocksOfFlats[i] = new BlockOfFlats(i + 7101, tempFloors, tempFloors * (rand() % 4 + 1)); // floors: 3-15, flats: 1-4
+		blocksOfFlats[i]->setCityName(city);
+		blocksOfFlats[i]->setStreetName(streetName);
 	}
 
 	for (int i = 0; i < numOfOfficeBuildings; i++)
@@ -322,6 +330,8 @@ void Street::generateBuildings()
 		tempFloors = rand() % 20 + 1; // floors: 1-20
 		tempEmplyees = tempFloors * (rand() % 16 + 10); // employees: 10-25 na poschodie krat pocet poschodi
 		officeBuildings[i] = new OfficeBuilding(i + 7201, tempFloors, tempEmplyees, tempEmplyees * (rand() % 1000 + 100), rand() % 6 + 1); // departments: 1-6
+		officeBuildings[i]->setCityName(city);
+		officeBuildings[i]->setStreetName(streetName);
 	}
 
 	for (int i = 0; i < numOfFactories; i++)
@@ -329,5 +339,7 @@ void Street::generateBuildings()
 		tempFloors = rand() % 2 + 1; // floors: 1-2
 		tempEmplyees = tempFloors * (rand() % 501 + 200); // employees: 200-700
 		factories[i] = new Factory(i + 7501, tempFloors, tempEmplyees, tempEmplyees * (rand() % 101 + 60), rand() % 3001 + 500); // area of production hall: 500-3500
+		factories[i]->setCityName(city);
+		factories[i]->setStreetName(streetName);
 	}
 }
