@@ -33,7 +33,7 @@ public:
 	void setCityName(string city) { this->city = city; }
 	void setStreetName(string streetName) { this->streetName = streetName; }
 
-	void generateBuildings(); 
+	void generateBuildings(); // ??? umiestnenie v public/protected/private
 	virtual void printInfo();
 };
 
@@ -61,7 +61,7 @@ Street::~Street()
 
 	delete[] familyHouses;
 
-	for (int i = 0; i < numOfOfficeBuildings; i++) // tu je nejaky problem
+	for (int i = 0; i < numOfOfficeBuildings; i++) // tu je nejaky problem, ale program aj tak skonci dobre, lebo sa vrati na konci nula
 	{
 		delete officeBuildings[i];
 	}
@@ -76,27 +76,26 @@ Street::~Street()
 	delete[] factories;
 }
 
-
 void Street::printInfo()
 {
-	cout << "Street name: " << streetName << "\nCity: " << city << "\n\nFollowing buildings are located on this street:\n\n";
+	cout << "STREET NAME: " << streetName << "\nCITY: " << city << "\n\nFollowing buildings are located on this street:\n\n";
 
 	cout << "FAMILY HOUSES:\n";
 	for (int i = 0; i < numOfFamilyHouses; i++)
 		familyHouses[i]->printInfo();
 
-	cout << "####################\n";
+	cout << endl;
 	cout << "BLOCKS OF FLATS:\n";
 	for (int i = 0; i < numOfBlocksOfFlats; i++)
 		blocksOfFlats[i]->printInfo();
 
-	cout << "####################\n";
-	cout << "OFFICE BUILDINGS\n";
+	cout << endl;
+	cout << "OFFICE BUILDINGS:\n";
 	for (int i = 0; i < numOfOfficeBuildings; i++)
 		officeBuildings[i]->printInfo();
 
-	cout << "####################\n";
-	cout << "FACTORIES\n";
+	cout << endl;
+	cout << "FACTORIES:\n";
 	for (int i = 0; i < numOfFactories; i++)
 		factories[i]->printInfo();
 }
@@ -139,7 +138,7 @@ FamilyHouse::FamilyHouse(int number, int floors, int houseArea, int gardenArea)
 
 void FamilyHouse::printInfo()
 {
-	cout << "Family house number: " << number << "\nNumber of floors: " << floors << "\nHouse area: " << houseArea << " m^2\nGarden area: " << gardenArea << " m^2\n" << std::endl;
+	cout << "Family house number: " << number << ", Number of floors: " << floors << ", House area: " << houseArea << " m^2, Garden area: " << gardenArea << " m^2" << endl;
 }
 
 //################################################################################//
@@ -179,7 +178,7 @@ BlockOfFlats::BlockOfFlats(int number, int floors, int flats)
 
 void BlockOfFlats::printInfo()
 {
-	cout << "Block of Flats number: " << number << "\nNumber of floors: " << floors << "\nNumber of flats: " << flats << std::endl << std::endl;
+	cout << "Block of Flats number: " << number << ", Number of floors: " << floors << ", Number of flats: " << flats << endl;
 }
 
 //################################################################################//
@@ -226,7 +225,7 @@ OfficeBuilding::OfficeBuilding(int number, int floors, int employees, int averag
 
 void OfficeBuilding::printInfo()
 {
-	std::cout << "Office building number: " << number << "\nNumber of floors: " << floors << "\nNumber of employees: " << employees << "\nAverage daily turnover: " << averageDailyTurnover << " EUR\nNumber of departments: " << departments << "\n\n";
+	std::cout << "Office building number: " << number << ", Number of floors: " << floors << ", Number of employees: " << employees << ", Average daily turnover: " << averageDailyTurnover << " EUR, Number of departments: " << departments << endl;
 }
 
 //################################################################################//
@@ -273,13 +272,10 @@ Factory::Factory(int number, int floors, int employees, int averageDailyTurnover
 
 void Factory::printInfo()
 {
-	std::cout << "Factory number: " << number << "\nNumber of floors: " << floors << "\nNumber of employees: " << employees << "\nAverage daily turnover: " << averageDailyTurnover << " EUR\nArea of the production hall: " << areaOfProductionHall << " m^2\n" << std::endl;
+	std::cout << "Factory number: " << number << ", Number of floors: " << floors << ", Number of employees: " << employees << ", Average daily turnover: " << averageDailyTurnover << " EUR, Area of the production hall: " << areaOfProductionHall << " m^2" << endl;
 }
 
 //################################################################################//
-
-
-
 
 int main()
 {
