@@ -5,14 +5,15 @@
 class FamilyHouse
 {
 protected:
-	int number;
-	int floors;
-	int houseArea;
-	int gardenArea;
+	int number = 0;
+	int floors = 0;
+	int houseArea = 0;
+	int gardenArea = 0;
 
 public:
-	FamilyHouse();
+	FamilyHouse() {}
 	FamilyHouse(int number, int floors, int houseArea, int gardenArea);
+	~FamilyHouse() { std::cout << "destruktor family house\n"; }
 
 	// funkcie na vratenie premennych
 	int getNumber() { return number; }
@@ -21,21 +22,13 @@ public:
 	int getGardenArea() { return gardenArea; }
 
 	// funkcie na prepis premennych
-	void changeNumber(int newNumber) { number = newNumber; }
-	void changeNumOfFloors(int newNumOfFloors) { floors = newNumOfFloors; }
-	void changeHouseArea(int newHouseArea) { houseArea = newHouseArea; }
-	void changeGardenArea(int newGardenArea) { gardenArea = newGardenArea; }
+	void setNumber(int newNumber) { number = newNumber; }
+	void setNumOfFloors(int newNumOfFloors) { floors = newNumOfFloors; }
+	void setHouseArea(int newHouseArea) { houseArea = newHouseArea; }
+	void setGardenArea(int newGardenArea) { gardenArea = newGardenArea; }
 
 	void printInfo();
 };
-
-FamilyHouse::FamilyHouse()
-{
-	number = -1;
-	floors = -1;
-	houseArea = -1;
-	gardenArea = -1;
-}
 
 FamilyHouse::FamilyHouse(int number, int floors, int houseArea, int gardenArea)
 {
@@ -47,7 +40,7 @@ FamilyHouse::FamilyHouse(int number, int floors, int houseArea, int gardenArea)
 
 void FamilyHouse::printInfo()
 {
-	std::cout << "Family house number: " << number << "\nNumber of floors: " << floors << "\nHouse area: " << houseArea << " m^2\nGarden area: " << gardenArea << " m^2" << std::endl;
+	std::cout << "Family house number: " << number << "\nNumber of floors: " << floors << "\nHouse area: " << houseArea << " m^2\nGarden area: " << gardenArea << " m^2\n" << std::endl;
 }
 
 //################################################################################//
@@ -55,13 +48,14 @@ void FamilyHouse::printInfo()
 class BlockOfFlats
 {
 protected:
-	int number;
-	int floors;
-	int flats;
+	int number = 0;
+	int floors = 0;
+	int flats = 0;
 
 public:
-	BlockOfFlats();
+	BlockOfFlats() {}
 	BlockOfFlats(int number, int floors, int flats);
+	~BlockOfFlats() { std::cout << "destruktor blocks of flats\n"; }
 
 	// funkcie na vratenie premennych
 	int getNumber() { return number; }
@@ -69,19 +63,12 @@ public:
 	int getNumOfFlats() { return flats; }
 
 	// funkcie na prepis premennych
-	void changeNumber(int newNumber) { number = newNumber; }
-	void changeNumOfFloors(int newNumOfFloors) { floors = newNumOfFloors; }
-	void changeNumOfFlats(int newNumOfFlats) { flats = newNumOfFlats; }
+	void setNumber(int newNumber) { number = newNumber; }
+	void setNumOfFloors(int newNumOfFloors) { floors = newNumOfFloors; }
+	void setNumOfFlats(int newNumOfFlats) { flats = newNumOfFlats; }
 
 	void printInfo();
 };
-
-BlockOfFlats::BlockOfFlats()
-{
-	number = -1;
-	floors = -1;
-	flats = -1;
-}
 
 BlockOfFlats::BlockOfFlats(int number, int floors, int flats)
 {
@@ -90,9 +77,10 @@ BlockOfFlats::BlockOfFlats(int number, int floors, int flats)
 	this->flats = flats;
 }
 
+
 void BlockOfFlats::printInfo()
 {
-	std::cout << "Block of Flats number: " << number << "\nNumber of floors: " << floors << "\nNumber of flats: " << flats << std::endl;
+	std::cout << "Block of Flats number: " << number << "\nNumber of floors: " << floors << "\nNumber of flats: " << flats << std::endl << std::endl;
 }
 
 //################################################################################//
@@ -100,41 +88,33 @@ void BlockOfFlats::printInfo()
 class OfficeBuilding
 {
 protected:
-	int number;
-	int floors;
-	int employees;
-	double averageDailyTurnover;
-	int departments;
+	int number = 0;
+	int floors = 0;
+	int employees = 0;
+	int averageDailyTurnover = 0;
+	int departments = 0;
 
 public:
-	OfficeBuilding();
+	OfficeBuilding() {}
 	OfficeBuilding(int number, int floors, int employees, int averageDailyTurnover, int departments);
+	~OfficeBuilding() { std::cout << "destruktor office building\n"; }
 
 	// funkcie na vratenie premennych
 	int getNumber() { return number; }
 	int getNumOfFloors() { return floors; }
 	int getNumOfEmployees() { return employees; }
-	double getAverageDailyTurnover() { return averageDailyTurnover; }
+	int getAverageDailyTurnover() { return averageDailyTurnover; }
 	int getNumOfDepartments() { return departments; }
 
 	// funkcie na prepis premennych
-	void changeNumber(int newNumber) { number = newNumber; }
-	void changeNumOfFloors(int newNumOfFloors) { floors = newNumOfFloors; }
-	void changeNumOfEmployees(int newNumOfEmployees) { employees = newNumOfEmployees; }
-	void changeAverageDailyTurnover(double newAverageDailyTurnover) { averageDailyTurnover = newAverageDailyTurnover; }
-	void changeNumOfDepartments(int newNumOfDepartments) { departments = newNumOfDepartments; }
+	void setNumber(int newNumber) { number = newNumber; }
+	void setNumOfFloors(int newNumOfFloors) { floors = newNumOfFloors; }
+	void setNumOfEmployees(int newNumOfEmployees) { employees = newNumOfEmployees; }
+	void setAverageDailyTurnover(int newAverageDailyTurnover) { averageDailyTurnover = newAverageDailyTurnover; }
+	void setNumOfDepartments(int newNumOfDepartments) { departments = newNumOfDepartments; }
 
 	void printInfo();
 };
-
-OfficeBuilding::OfficeBuilding()
-{
-	number = -1;
-	floors = -1;
-	employees = -1;
-	averageDailyTurnover = 0.0;
-	departments = -1;
-}
 
 OfficeBuilding::OfficeBuilding(int number, int floors, int employees, int averageDailyTurnover, int departments)
 {
@@ -147,7 +127,7 @@ OfficeBuilding::OfficeBuilding(int number, int floors, int employees, int averag
 
 void OfficeBuilding::printInfo()
 {
-	std::cout << "Office building number: " << number << "\nNumber of floors: " << floors << "\nNumber of employees: " << employees << "\nAverage daily turnover: " << averageDailyTurnover << " EUR\nNumber of departments: " << departments << std::endl;
+	std::cout << "Office building number: " << number << "\nNumber of floors: " << floors << "\nNumber of employees: " << employees << "\nAverage daily turnover: " << averageDailyTurnover << " EUR\nNumber of departments: " << departments << "\n\n";
 }
 
 //################################################################################//
@@ -155,43 +135,35 @@ void OfficeBuilding::printInfo()
 class Factory
 {
 protected:
-	int number;
-	int floors;
-	int employees;
-	double averageDailyTurnover;
-	int areaOfProductionHall;
+	int number = 0;
+	int floors = 0;
+	int employees = 0;
+	int averageDailyTurnover = 0;
+	int areaOfProductionHall = 0;
 
 public:
-	Factory();
-	Factory(int number, int floors, int employees, double averageDailyTurnover, int areaOfProductionHall);
+	Factory() {}
+	Factory(int number, int floors, int employees, int averageDailyTurnover, int areaOfProductionHall);
+	~Factory() { std::cout << "destruktor factory\n"; }
 
 	// funkcie na vratenie premennych
 	int getNumber() { return number; }
 	int getNumOfFloors() { return floors; }
 	int getNumOfEmployees() { return employees; }
-	double getAverageDailyTurnover() { return averageDailyTurnover; }
+	int getAverageDailyTurnover() { return averageDailyTurnover; }
 	int getAreaOfProductionHall() { return areaOfProductionHall; }
 
 	// funkcie na prepis premennych
-	void changeNumber(int newNumber) { number = newNumber; }
-	void changeNumOfFloors(int newNumOfFloors) { floors = newNumOfFloors; }
-	void changeNumOfEmployees(int newNumOfEmployees) { employees = newNumOfEmployees; }
-	void changeAverageDailyTurnover(double newAverageDailyTurnover) { averageDailyTurnover = newAverageDailyTurnover; }
-	void changeAreaOfProductionHall(int newAreaOfProductionHall) { areaOfProductionHall = newAreaOfProductionHall; }
+	void setNumber(int newNumber) { number = newNumber; }
+	void setNumOfFloors(int newNumOfFloors) { floors = newNumOfFloors; }
+	void setNumOfEmployees(int newNumOfEmployees) { employees = newNumOfEmployees; }
+	void setAverageDailyTurnover(int newAverageDailyTurnover) { averageDailyTurnover = newAverageDailyTurnover; }
+	void setAreaOfProductionHall(int newAreaOfProductionHall) { areaOfProductionHall = newAreaOfProductionHall; }
 
 	void printInfo();
 };
 
-Factory::Factory()
-{
-	number = -1;
-	floors = -1;
-	employees = -1;
-	averageDailyTurnover = 0.0;
-	areaOfProductionHall = -1;
-}
-
-Factory::Factory(int number, int floors, int employees, double averageDailyTurnover, int areaOfProductionHall)
+Factory::Factory(int number, int floors, int employees, int averageDailyTurnover, int areaOfProductionHall)
 {
 	this->number = number;
 	this->floors = floors;
@@ -202,14 +174,14 @@ Factory::Factory(int number, int floors, int employees, double averageDailyTurno
 
 void Factory::printInfo()
 {
-	std::cout << "Factory number: " << number << "\nNumber of floors: " << floors << "\nNumber of employees: " << employees << "\nAverage daily turnover: " << averageDailyTurnover << " EUR\nArea of the production hall: " << areaOfProductionHall << " m^2" << std::endl;
+	std::cout << "Factory number: " << number << "\nNumber of floors: " << floors << "\nNumber of employees: " << employees << "\nAverage daily turnover: " << averageDailyTurnover << " EUR\nArea of the production hall: " << areaOfProductionHall << " m^2\n" << std::endl;
 }
 
 //################################################################################//
 
 class Street : public FamilyHouse, public BlockOfFlats, public OfficeBuilding, public Factory
 {
-private:
+protected:
 	std::string city;
 	std::string streetName;
 
@@ -218,83 +190,80 @@ private:
 	int numOfOfficeBuildings;
 	int numOfFactories;
 	
-	FamilyHouse* familyHouses;
-	BlockOfFlats* blocksOfFlats;
-	OfficeBuilding* officeBuildings;
-	Factory* factories;
+	Street** familyHouses;
+	Street** blocksOfFlats;
+	Street** officeBuildings;
+	Street** factories;
 
 public:
-	Street();
 	Street(std::string city, std::string streetName);
+	~Street();
 
 	void generateBuildings();
 	void printInfo();
 };
-
-Street::Street()
-{
-	city = "N/A";
-	streetName = "N/A";
-
-	familyHouses = nullptr;
-	blocksOfFlats = nullptr;
-	officeBuildings = nullptr;
-	factories = nullptr;
-}
 
 Street::Street(std::string city, std::string streetName)
 {
 	this->city = city;
 	this->streetName = streetName;
 
-	familyHouses = nullptr;
-	blocksOfFlats = nullptr;
-	officeBuildings = nullptr;
-	factories = nullptr;
+	familyHouses = NULL;
+	blocksOfFlats = NULL;
+	officeBuildings = NULL;
+	factories = NULL;
+}
+
+Street::~Street()
+{
+	for (int i = 0; i < numOfFamilyHouses; i++)
+		delete familyHouses[i];
+	
+	delete[] familyHouses;
+
+	for (int i = 0; i < numOfBlocksOfFlats; i++)
+		delete blocksOfFlats[i];
+
+	delete[] familyHouses;
+
+	for (int i = 0; i < numOfOfficeBuildings; i++)
+		delete officeBuildings[i];
+
+	delete[] officeBuildings;
+
+	for (int i = 0; i < numOfFactories; i++)
+		delete factories[i];
+	
+	delete[] factories;
 }
 
 void Street::generateBuildings()
 {
-	int temp = 0;
 
-	// generovanie pre family houses
-	temp = std::rand() % 20;
-	if (temp != 0)
-	{
-		numOfFamilyHouses = temp;
-		familyHouses = new FamilyHouse[numOfFamilyHouses];
-	}
+
+	
 }
 
 void Street::printInfo()
 {
-	std::cout << "Street name: " << streetName << "\nCity: " << city << "\nFollowing buildings are located on this street:" << std::endl;
+	std::cout << "Street name: " << streetName << "\nCity: " << city << "\n\nFollowing buildings are located on this street:\n\n";
 
-	// vypis pre family houses
-	if (familyHouses == nullptr)
-		std::cout << "There are no family houses on this street" << std::endl;
-	else
-		for (int i = 0; i < numOfFamilyHouses; i++)
-			familyHouses[i].printInfo();
+	
+}
 
-	// vypis pre blocks of flats
-	if (blocksOfFlats == nullptr)
-		std::cout << "There are no blocks of flats on this street" << std::endl;
-	else
-		for (int i = 0; i < numOfBlocksOfFlats; i++)
-			blocksOfFlats[i].printInfo();
 
-	// vypis pre office buildings
-	if (officeBuildings == nullptr)
-		std::cout << "There are no office buildings on this street" << std::endl;
-	else
-		for (int i = 0; i < numOfOfficeBuildings; i++)
-			officeBuildings[i].printInfo();
+int main()
+{
+	srand((unsigned)time(0));
 
-	// vypis pre factories
-	if (factories == nullptr)
-		std::cout << "There are no factories on this street" << std::endl;
-	else
-		for (int i = 0; i < numOfFactories; i++)
-			factories[i].printInfo();
+	Street ulica("Bratislava", "Racianska");
+
+	//ulica.printInfo();
+	
+	ulica.generateBuildings();
+	ulica.printInfo();
+
+	
+
+	return 0;
 }
