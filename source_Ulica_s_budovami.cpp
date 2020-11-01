@@ -2,9 +2,108 @@
 #include <iomanip>
 #include <string>
 
-class FamilyHouse
+using std::cout;
+using std::endl;
+using std::string;
+
+class Street
 {
 protected:
+	std::string city = "";
+	std::string streetName = "";
+
+	int numOfFamilyHouses = 0;
+	int numOfBlocksOfFlats = 0;
+	int numOfOfficeBuildings = 0;
+	int numOfFactories = 0;
+
+public:
+	Street() {}
+	Street(std::string city, std::string streetName);
+	virtual ~Street();
+
+	Street** familyHouses = nullptr;
+	Street** blocksOfFlats = nullptr;
+	Street** officeBuildings = nullptr;
+	Street** factories = nullptr;
+
+	string getCityName() { return city; }
+	string getStreetName() { return streetName; }
+
+	void setCityName(string city) { this->city = city; }
+	void setStreetName(string streetName) { this->streetName = streetName; }
+
+	void generateBuildings(); 
+	virtual void printInfo();
+};
+
+Street::Street(std::string city, std::string streetName)
+{
+	this->city = city;
+	this->streetName = streetName;
+
+	generateBuildings();
+}
+
+Street::~Street()
+{
+	for (int i = 0; i < numOfFamilyHouses; i++)
+	{
+		delete familyHouses[i]; // vymazu sa jendotlive family houses, podobne aj pre ostatne
+	}
+		
+	delete[] familyHouses; // potom ten prvy smernik, podobne aj pre ostatne
+
+	for (int i = 0; i < numOfBlocksOfFlats; i++)
+	{
+		delete blocksOfFlats[i];
+	}
+
+	delete[] familyHouses;
+
+	for (int i = 0; i < numOfOfficeBuildings; i++) // tu je nejaky problem
+	{
+		delete officeBuildings[i];
+	}
+
+	delete[] officeBuildings;
+
+	for (int i = 0; i < numOfFactories; i++)
+	{
+		delete factories[i];
+	}
+
+	delete[] factories;
+}
+
+
+void Street::printInfo()
+{
+	cout << "Street name: " << streetName << "\nCity: " << city << "\n\nFollowing buildings are located on this street:\n\n";
+
+	cout << "FAMILY HOUSES:\n";
+	for (int i = 0; i < numOfFamilyHouses; i++)
+		familyHouses[i]->printInfo();
+
+	cout << "####################\n";
+	cout << "BLOCKS OF FLATS:\n";
+	for (int i = 0; i < numOfBlocksOfFlats; i++)
+		blocksOfFlats[i]->printInfo();
+
+	cout << "####################\n";
+	cout << "OFFICE BUILDINGS\n";
+	for (int i = 0; i < numOfOfficeBuildings; i++)
+		officeBuildings[i]->printInfo();
+
+	cout << "####################\n";
+	cout << "FACTORIES\n";
+	for (int i = 0; i < numOfFactories; i++)
+		factories[i]->printInfo();
+}
+
+class FamilyHouse : public Street
+{
+private:
 	int number = 0;
 	int floors = 0;
 	int houseArea = 0;
@@ -13,7 +112,7 @@ protected:
 public:
 	FamilyHouse() {}
 	FamilyHouse(int number, int floors, int houseArea, int gardenArea);
-	~FamilyHouse() { std::cout << "destruktor family house\n"; }
+	~FamilyHouse() {}//{ std::cout << "destruktor family house\n"; }
 
 	// funkcie na vratenie premennych
 	int getNumber() { return number; }
@@ -40,12 +139,12 @@ FamilyHouse::FamilyHouse(int number, int floors, int houseArea, int gardenArea)
 
 void FamilyHouse::printInfo()
 {
-	std::cout << "Family house number: " << number << "\nNumber of floors: " << floors << "\nHouse area: " << houseArea << " m^2\nGarden area: " << gardenArea << " m^2\n" << std::endl;
+	cout << "Family house number: " << number << "\nNumber of floors: " << floors << "\nHouse area: " << houseArea << " m^2\nGarden area: " << gardenArea << " m^2\n" << std::endl;
 }
 
 //################################################################################//
 
-class BlockOfFlats
+class BlockOfFlats : public Street
 {
 protected:
 	int number = 0;
@@ -55,7 +154,7 @@ protected:
 public:
 	BlockOfFlats() {}
 	BlockOfFlats(int number, int floors, int flats);
-	~BlockOfFlats() { std::cout << "destruktor blocks of flats\n"; }
+	~BlockOfFlats() {}//{ cout << "destruktor blocks of flats\n"; }
 
 	// funkcie na vratenie premennych
 	int getNumber() { return number; }
@@ -80,12 +179,12 @@ BlockOfFlats::BlockOfFlats(int number, int floors, int flats)
 
 void BlockOfFlats::printInfo()
 {
-	std::cout << "Block of Flats number: " << number << "\nNumber of floors: " << floors << "\nNumber of flats: " << flats << std::endl << std::endl;
+	cout << "Block of Flats number: " << number << "\nNumber of floors: " << floors << "\nNumber of flats: " << flats << std::endl << std::endl;
 }
 
 //################################################################################//
 
-class OfficeBuilding
+class OfficeBuilding : public Street
 {
 protected:
 	int number = 0;
@@ -97,7 +196,7 @@ protected:
 public:
 	OfficeBuilding() {}
 	OfficeBuilding(int number, int floors, int employees, int averageDailyTurnover, int departments);
-	~OfficeBuilding() { std::cout << "destruktor office building\n"; }
+	~OfficeBuilding() {}//{ std::cout << "destruktor office building\n"; }
 
 	// funkcie na vratenie premennych
 	int getNumber() { return number; }
@@ -132,7 +231,7 @@ void OfficeBuilding::printInfo()
 
 //################################################################################//
 
-class Factory
+class Factory : public Street
 {
 protected:
 	int number = 0;
@@ -144,7 +243,7 @@ protected:
 public:
 	Factory() {}
 	Factory(int number, int floors, int employees, int averageDailyTurnover, int areaOfProductionHall);
-	~Factory() { std::cout << "destruktor factory\n"; }
+	~Factory() {}//{ std::cout << "destruktor factory\n"; }
 
 	// funkcie na vratenie premennych
 	int getNumber() { return number; }
@@ -179,77 +278,7 @@ void Factory::printInfo()
 
 //################################################################################//
 
-class Street : public FamilyHouse, public BlockOfFlats, public OfficeBuilding, public Factory
-{
-protected:
-	std::string city;
-	std::string streetName;
 
-	int numOfFamilyHouses;
-	int numOfBlocksOfFlats;
-	int numOfOfficeBuildings;
-	int numOfFactories;
-	
-	Street** familyHouses;
-	Street** blocksOfFlats;
-	Street** officeBuildings;
-	Street** factories;
-
-public:
-	Street(std::string city, std::string streetName);
-	~Street();
-
-	void generateBuildings();
-	void printInfo();
-};
-
-Street::Street(std::string city, std::string streetName)
-{
-	this->city = city;
-	this->streetName = streetName;
-
-	familyHouses = NULL;
-	blocksOfFlats = NULL;
-	officeBuildings = NULL;
-	factories = NULL;
-}
-
-Street::~Street()
-{
-	for (int i = 0; i < numOfFamilyHouses; i++)
-		delete familyHouses[i];
-	
-	delete[] familyHouses;
-
-	for (int i = 0; i < numOfBlocksOfFlats; i++)
-		delete blocksOfFlats[i];
-
-	delete[] familyHouses;
-
-	for (int i = 0; i < numOfOfficeBuildings; i++)
-		delete officeBuildings[i];
-
-	delete[] officeBuildings;
-
-	for (int i = 0; i < numOfFactories; i++)
-		delete factories[i];
-	
-	delete[] factories;
-}
-
-void Street::generateBuildings()
-{
-
-
-	
-}
-
-void Street::printInfo()
-{
-	std::cout << "Street name: " << streetName << "\nCity: " << city << "\n\nFollowing buildings are located on this street:\n\n";
-
-	
-}
 
 
 int main()
@@ -258,12 +287,51 @@ int main()
 
 	Street ulica("Bratislava", "Racianska");
 
-	//ulica.printInfo();
-	
-	ulica.generateBuildings();
 	ulica.printInfo();
 
-	
+	/*FamilyHouse domcek(1, 2, 100, 150);
+	domcek.setStreetName("Demanovska");
+
+	cout << domcek.getCityName() << endl << domcek.getStreetName() << endl;
+	domcek.printInfo();*/
 
 	return 0;
+}
+
+void Street::generateBuildings()
+{
+	int tempFloors = 0, tempEmplyees = 0;
+
+	numOfFamilyHouses = rand() % 20 + 1;
+	numOfBlocksOfFlats = rand() % 10 + 1;
+	numOfOfficeBuildings = rand() % 5 + 1;
+	numOfFactories = rand() % 3 + 1;
+
+	familyHouses = new Street * [numOfFamilyHouses];
+	blocksOfFlats = new Street * [numOfBlocksOfFlats];
+	officeBuildings = new Street * [numOfOfficeBuildings];
+	factories = new Street * [numOfFactories];
+
+	for (int i = 0; i < numOfFamilyHouses; i++)
+		familyHouses[i] = new FamilyHouse(i + 7001, rand() % 2 + 1, rand() % 101 + 50, rand() % 101 + 100); // pri number 7000 preto lebo v mojej adrese je 7009
+
+	for (int i = 0; i < numOfBlocksOfFlats; i++)
+	{
+		tempFloors = rand() % 13 + 3; // pomocna premenna, kde bude ulozeny pocet poschodi a to sa potom pouzije na vypocet celkoveho poctu bytov v block of flats
+		blocksOfFlats[i] = new BlockOfFlats(i + 7101, tempFloors, tempFloors * (rand() % 4 + 1)); // floors: 3-15, flats: 1-4
+	}
+
+	for (int i = 0; i < numOfOfficeBuildings; i++)
+	{
+		tempFloors = rand() % 20 + 1; // floors: 1-20
+		tempEmplyees = tempFloors * (rand() % 16 + 10); // employees: 10-25 na poschodie krat pocet poschodi
+		officeBuildings[i] = new OfficeBuilding(i + 7201, tempFloors, tempEmplyees, tempEmplyees * (rand() % 1000 + 100), rand() % 6 + 1); // departments: 1-6
+	}
+
+	for (int i = 0; i < numOfFactories; i++)
+	{
+		tempFloors = rand() % 2 + 1; // floors: 1-2
+		tempEmplyees = tempFloors * (rand() % 501 + 200); // employees: 200-700
+		factories[i] = new Factory(i + 7501, tempFloors, tempEmplyees, tempEmplyees * (rand() % 101 + 60), rand() % 3001 + 500); // area of production hall: 500-3500
+	}
 }
